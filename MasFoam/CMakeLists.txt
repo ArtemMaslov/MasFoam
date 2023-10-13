@@ -3,6 +3,7 @@ project(MasFoam
         VERSION 0.0.1)
 
 include(GNUInstallDirs)
+include(CTest)
 find_package(pybind11 REQUIRED)
 
 set(CMAKE_CXX_STANDARD 20)
@@ -12,10 +13,13 @@ set(CMAKE_CXX_FLAGS "-Wall -Wextra -fPIC -Wno-unused-variable")
 set(IncludesDirPath ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 set(Includes 
+    Data/Matrix.h
+    Data/_matrix_imp.h
+    Data/Vector.h
+    Data/_vector_imp.h
     Derivative/Derivative.h
+    LinearEquations/GaussSolver.h
 )
-
-set(Sources)
 
 set(PythonModuleSources
     ${Sources}
@@ -29,6 +33,10 @@ set_target_properties(MasFoam PROPERTIES VERSION ${PROJECT_VERSION})
 install(TARGETS MasFoam
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+
+# Тесты.
+enable_testing()
+add_subdirectory(UnitTests)
 
 # Динамическая библиотека C++.
 #[===[
