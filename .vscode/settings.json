@@ -1,5 +1,10 @@
 {
     "cSpell.words": [
         "интерполянтов"
-    ]
+    ],
+    "editor.codeActionWidget.includeNearbyQuickFixes": false,
+    "editor.hover.above": false,
+    "editor.hover.enabled": false,
+    "editor.hover.delay": 10000,
+    "workbench.hover.delay": 20000
 }
